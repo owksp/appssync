@@ -1,3 +1,9 @@
+# Secrets, credentials etc
+credentials.json
+token.json
+secrets/
+.config/
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
