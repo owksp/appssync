@@ -4,34 +4,43 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 
-	"golang.org/x/oauth2"
 	"google.golang.org/api/option"
 	"google.golang.org/api/script/v1"
+
+	"github.com/txsvc/apikit/config"
 )
 
-func PullAppsScript(scriptId, path string, cfg *oauth2.Config, token *oauth2.Token) error {
+func pullAppsScript(scriptId string) error {
 	ctx := context.Background()
 
-	client := cfg.Client(ctx, token)
-	svc, err := script.NewService(ctx, option.WithHTTPClient(client))
-	if err != nil {
-		log.Fatalf("Unable to retrieve Apps Script client: %v", err)
+	token, err := LoadToken(filepath.Join(config.GetConfig().ConfigLocation(), tokenFile))
+	if err != nil || token.AccessToken == "" {
+		return fmt.Errorf("invalid token")
 	}
 
+	cfg := GetOAuthConfig(config.GetConfig().Settings().Credentials.UserID, config.GetConfig().Settings().Credentials.Token, config.GetConfig().Settings().DefaultScopes)
+	client := cfg.Client(ctx, token)
+
+	svc, err := script.NewService(ctx, option.WithHTTPClient(client))
+	if err != nil {
+		return fmt.Errorf("unable to retrieve Apps Script client: %v", err)
+	}
+
+	// retrieve the list of files in the remote project
 	content, err := svc.Projects.GetContent(scriptId).Do()
 	if err != nil {
 		return err
 	}
 
 	// pull the files
+	assetLocation := config.GetConfig().(*AppsScriptConfig).AssetsLocation()
 	for _, f := range content.Files {
-		err := pullFile(f, path)
+		err := pullFile(f, assetLocation)
 		if err != nil {
-			log.Fatalf("Unable to pull Apps Script assets: %v", err)
+			return fmt.Errorf("unable to pull Apps Script assets: %v", err)
 		}
 	}
 

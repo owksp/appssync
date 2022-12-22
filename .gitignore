@@ -4,6 +4,9 @@ token.json
 secrets/
 .config/
 
+# test assets
+appsscript/
+
 # Binaries for programs and plugins
 *.exe
 *.exe~

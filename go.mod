@@ -6,6 +6,7 @@ require (
 	github.com/labstack/echo/v4 v4.8.0
 	github.com/txsvc/apikit v0.2.1
 	github.com/txsvc/stdlib/v2 v2.3.0
+	github.com/urfave/cli/v2 v2.11.2
 	golang.org/x/oauth2 v0.3.0
 	google.golang.org/api v0.103.0
 )
@@ -19,6 +20,7 @@ require (
 	github.com/btcsuite/btcd v0.21.0-beta // indirect
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce // indirect
 	github.com/bytom/bytom v1.1.1 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/dlclark/regexp2 v1.4.0 // indirect
 	github.com/ethereum/go-ethereum v1.10.4 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
@@ -40,9 +42,11 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rs/zerolog v1.26.0 // indirect
+	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/tyler-smith/go-bip39 v1.0.1-0.20181017060643-dbb3b84ba2ef // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
+	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/ziflex/lecho/v3 v3.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
